@@ -11,6 +11,8 @@ license: MIT
 grade: stable  # must be 'stable' to release into candidate/stable channels
 confinement: classic
 
+architectures: [amd64, i386, armhf, arm64]
+
 apps:
   julia:
     command: bin/julia
