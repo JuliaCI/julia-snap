@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Julia Documentation
+Comment=Browse the Julia documentation locally
+Exec=julia.julia-docs
+Icon=${SNAP}/meta/gui/julia.png
+Terminal=false
+Type=Application

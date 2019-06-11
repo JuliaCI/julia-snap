@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=The Julia Language
+Comment=The Julia programming language
+Exec=julia
+Icon=${SNAP}/meta/gui/julia.png
+Terminal=true
+Type=Application
