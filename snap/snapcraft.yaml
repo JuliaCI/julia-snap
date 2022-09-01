@@ -1,6 +1,6 @@
 name: julia
 base: core18  # Ubuntu Core 18
-version: '1.0.4'  # TODO: How do we want to handle LTS vs. current versions?
+version: '1.6.7'  # TODO: How do we want to handle LTS vs. current versions?
 title: The Julia Language
 summary: The Julia programming language
 description: |
@@ -23,10 +23,10 @@ parts:
   julia:
     plugin: dump
     source:
-      - on amd64: https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.4-linux-x86_64.tar.gz
-      - on i386: https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.4-linux-i686.tar.gz
-      - on armhf: https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.4-linux-armv7l.tar.gz
-      - on arm64: https://julialang-s3.julialang.org/bin/linux/aarch64/1.0/julia-1.0.4-linux-aarch64.tar.gz
+      - on amd64: https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-x86_64.tar.gz
+      - on i386: https://julialang-s3.julialang.org/bin/linux/x86/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-i686.tar.gz
+      - on armhf: https://julialang-s3.julialang.org/bin/linux/armv7l/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-armv7l.tar.gz
+      - on arm64: https://julialang-s3.julialang.org/bin/linux/aarch64/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-aarch64.tar.gz
   julia-docs:
     plugin: dump
     source: snap/local
