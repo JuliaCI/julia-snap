@@ -1,0 +1,45 @@
+name: snap
+
+on:
+  # Manually trigger this from the Actions tab
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release Type'
+        required: true
+        default: 'stable'
+        type: choice
+        options:
+        - lts
+        - stable
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform:
+        - amd64
+        - i386
+        - arm64
+        - armhf
+    continue-on-error: ${{ matrix.platform == 'armhf' }}
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+    - name: Set up snapcraft.yaml
+      run: |
+        cp "snap/snapcraft-${{ inputs.release }}.yaml" "snap/snapcraft.yaml"
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    - name: Build Snap
+      uses: diddlesnaps/snapcraft-multiarch-action@v1
+      id: snapcraft
+      with:
+        architecture: ${{ matrix.platform }}
+    - name: Upload and Release
+      uses: snapcore/action-publish@v1
+      with:
+        store_login: ${{ secrets.STORE_TOKEN }}
+        snap: ${{ steps.snapcraft.outputs.snap }}
+        release: ${{ inputs.release == 'lts' && 'lts/stable' || inputs.release }}
