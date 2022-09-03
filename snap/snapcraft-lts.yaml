@@ -1,0 +1,35 @@
+name: julia
+version: '1.6.7'
+title: The Julia Language
+summary: The Julia programming language
+description: |
+  Julia is a high level, high performance, dynamic language for technical computing.
+license: MIT
+
+base: core18
+confinement: classic
+type: app
+
+architectures:
+- build-on: amd64
+- build-on: i386
+- build-on: arm64
+- build-on: armhf
+
+apps:
+  julia:
+    command: bin/julia
+  julia-docs:
+    command: julia-docs.sh $SNAP/share/doc/julia/html/en/index.html
+
+parts:
+  julia:
+    plugin: dump
+    source:
+    - on amd64: https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-x86_64.tar.gz
+    - on i386: https://julialang-s3.julialang.org/bin/linux/x86/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-i686.tar.gz
+    - on arm64: https://julialang-s3.julialang.org/bin/linux/aarch64/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-aarch64.tar.gz
+    - on armhf: https://julialang-s3.julialang.org/bin/linux/armv7l/1.6/julia-$SNAPCRAFT_PROJECT_VERSION-linux-armv7l.tar.gz
+  julia-docs:
+    plugin: dump
+    source: snap/local
