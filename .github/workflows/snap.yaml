@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        release:
+        - ${{ inputs.release }}
         platform:
         - amd64
         - i386
@@ -27,9 +29,15 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
-    - name: Set up snapcraft.yaml
+    - uses: julia-actions/setup-julia@v1
+      with:
+        version: 1.8.0
+        arch: x64
+    - name: Generate snapcraft.yaml
       run: |
-        cp "snap/snapcraft-${{ inputs.release }}.yaml" "snap/snapcraft.yaml"
+        cd scripts/
+        julia --project=. -e 'using Pkg; Pkg.instantiate()'
+        julia --project=. create-snapcraft-yaml.jl "${{ inputs.release }}"
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
     - name: Build Snap
