@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        release:
+        - ${{ inputs.release }}
         platform:
         - amd64
         - i386
