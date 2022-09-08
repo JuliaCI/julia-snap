@@ -20,15 +20,9 @@ else
 end
 latest = maximum(versions)
 
-substitutions = Dict(
-    raw"${JULIA_VERSION}" => string(latest),
-    raw"${JULIA_SERIES}" => string(latest.major, '.', latest.minor)
-)
-
 open(joinpath(dirname(@__DIR__), "snap", "snapcraft.yaml"), "w") do io
-    yaml = read("snapcraft.yaml.in", String)
-    for pair in substitutions
-        yaml = replace(yaml, pair)
-    end
+    yaml = replace(read("snapcraft.yaml.in", String),
+                   raw"${JULIA_VERSION}" => string(latest),
+                   raw"${JULIA_SERIES}" => string(latest.major, '.', latest.minor))
     print(io, yaml)
 end
