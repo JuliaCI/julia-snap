@@ -31,6 +31,9 @@ parts:
     - on i386: https://julialang-s3.julialang.org/bin/linux/x86/${JULIA_SERIES}/julia-$SNAPCRAFT_PROJECT_VERSION-linux-i686.tar.gz
     - on arm64: https://julialang-s3.julialang.org/bin/linux/aarch64/${JULIA_SERIES}/julia-$SNAPCRAFT_PROJECT_VERSION-linux-aarch64.tar.gz
     - on armhf: https://julialang-s3.julialang.org/bin/linux/armv7l/${JULIA_SERIES}/julia-$SNAPCRAFT_PROJECT_VERSION-linux-armv7l.tar.gz
+    build-attributes:
+    - keep-execstack
+    - no-patchelf
   julia-docs:
     plugin: dump
     source: snap/local
