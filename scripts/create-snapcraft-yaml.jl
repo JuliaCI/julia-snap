@@ -12,7 +12,7 @@ using JSON3
 release = ARGS[1]
 contents = JSON3.read(HTTP.get("https://julialang-s3.julialang.org/bin/versions.json").body)
 
-versions = VersionNumber.(String.(keys(filter(p -> last(p)[:stable], contents))))
+versions = [VersionNumber(String(k)) for (k, v) in contents if v.stable]
 if release == "lts"
     filter!(v -> v.major == CURRENT_LTS.major && v.minor == CURRENT_LTS.minor, versions)
 else
