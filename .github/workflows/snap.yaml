@@ -47,7 +47,8 @@ jobs:
         architecture: ${{ matrix.platform }}
     - name: Upload and Release
       uses: snapcore/action-publish@v1
+      env:
+        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_TOKEN }}
       with:
-        store_login: ${{ secrets.STORE_TOKEN }}
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: ${{ inputs.release == 'lts' && 'lts/stable' || inputs.release }}
