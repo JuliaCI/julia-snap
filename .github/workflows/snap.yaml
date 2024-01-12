@@ -48,7 +48,7 @@ jobs:
     - name: Upload and Release
       uses: snapcore/action-publish@v1
       env:
-        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_TOKEN }}
       with:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: ${{ inputs.release == 'lts' && 'lts/stable' || inputs.release }}
