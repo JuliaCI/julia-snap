@@ -28,7 +28,7 @@ jobs:
     continue-on-error: ${{ matrix.platform == 'armhf' }}
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - uses: julia-actions/setup-julia@v1
       with:
         version: 1.8.0
@@ -39,7 +39,7 @@ jobs:
         julia --project=. -e 'using Pkg; Pkg.instantiate()'
         julia --project=. create-snapcraft-yaml.jl "${{ inputs.release }}"
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v2
+      uses: docker/setup-qemu-action@v3
     - name: Build Snap
       uses: diddlesnaps/snapcraft-multiarch-action@v1
       id: snapcraft
