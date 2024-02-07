@@ -3,7 +3,7 @@ version: ${JULIA_VERSION}
 title: The Julia Language
 summary: The Julia programming language
 description: |
-  Julia is a high level, high performance, dynamic language for technical computing.
+  Julia is a high-level, high-performance, dynamic language, useful in general, while originally made for technical computing.
 license: MIT
 
 base: core18
