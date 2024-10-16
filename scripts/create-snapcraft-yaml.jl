@@ -1,4 +1,4 @@
-const CURRENT_LTS = v"1.6"  # keep this up to date
+const CURRENT_LTS = v"1.10"  # keep this up to date
 
 #####
 
